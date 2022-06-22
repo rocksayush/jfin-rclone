@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bash
+
+source /etc/colors.sh
+
+PREFFIX="[cont-finish.d] $(s6-basename ${0}):"
+
+
+echo -e "${PREFFIX} ${Yellow}waiting for shutdown of all services${Color_Off}"
+#wait for all services to be down
+s6-svwait -D /var/run/s6/services/*
